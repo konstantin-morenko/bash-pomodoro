@@ -45,12 +45,18 @@ while [[ $ANSWER != "q" ]]; do
 	   WORK=$(( $WORK+1 ))
 	   UNINT_WORK=$(( $UNINT_WORK+1 ))
 	   save ;;
+	W) TIME_WORK=$INTERVAL
+	   save ;;
 	s) timer ${INTERVAL:-$TIME_SHORT} 0 "Time to work! (x)"
 	   SHORT=$(( $SHORT+1 ))
+	   save ;;
+	S) TIME_SHORT=$INTERVAL
 	   save ;;
 	l) timer ${INTERVAL:-$TIME_LONG} 5 "Time to work! (x)"
 	   LONG=$(( $LONG+1 ))
 	   UNINT_WORK=0
+	   save ;;
+	L) TIME_LONG=$INTERVAL
 	   save ;;
 	q) save ;;
     esac
