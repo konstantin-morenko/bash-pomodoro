@@ -5,9 +5,10 @@ source timer-source.sh
 WORK=0
 SHORT=0
 LONG=0
+UNINT_WORK=0
 
 function save {
-    echo -e "WORK=$WORK\nSHORT=$SHORT\nLONG=$LONG\n" > $DBASE_FILE
+    echo -e "WORK=$WORK\nSHORT=$SHORT\nLONG=$LONG\nUNINT_WORK=$UNINT_WORK\n" > $DBASE_FILE
 }
 
 function load {
@@ -30,7 +31,6 @@ TIME_SHORT=5
 TIME_LONG=30
 
 ANSWER=""
-UNINT_WORK=0
 while [[ $ANSWER != "q" ]]; do
     echo "--------------------"
     echo "w - work ($TIME_WORK) [$UNINT_WORK; $WORK]"
