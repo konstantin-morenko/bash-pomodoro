@@ -7,8 +7,13 @@ SHORT=0
 LONG=0
 UNINT_WORK=0
 
+TIME_WORK=20
+TIME_SHORT=5
+TIME_LONG=30
+
 function save {
     echo -e "WORK=$WORK\nSHORT=$SHORT\nLONG=$LONG\nUNINT_WORK=$UNINT_WORK\n" > $DBASE_FILE
+    echo -e "TIME_WORK=$TIME_WORK\nTIME_SHORT=$TIME_SHORT\nTIME_LONG=$TIME_LONG\n" >> $DBASE_FILE
 }
 
 function load {
@@ -26,9 +31,6 @@ load `date +%F`.pom
 echo "Pomodoro timer!"
 echo "==============="
 
-TIME_WORK=20
-TIME_SHORT=5
-TIME_LONG=30
 
 ANSWER=""
 while [[ $ANSWER != "q" ]]; do
