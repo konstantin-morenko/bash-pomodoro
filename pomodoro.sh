@@ -2,18 +2,18 @@
 
 source timer-source.sh
 
-WORK=0
-SHORT=0
-LONG=0
-UNINT_WORK=0
+WORK_NUM=0
+SHORT_NUM=0
+LONG_NUM=0
+WORK_NUM_UNINT=0
 
-TIME_WORK=20
-TIME_SHORT=5
-TIME_LONG=30
+WORK_INTERVAL=20
+SHORT_INTERVAL=5
+LONG_INTERVAL=30
 
 function save {
-    echo -e "WORK=$WORK\nSHORT=$SHORT\nLONG=$LONG\nUNINT_WORK=$UNINT_WORK\n" > $DBASE_FILE
-    echo -e "TIME_WORK=$TIME_WORK\nTIME_SHORT=$TIME_SHORT\nTIME_LONG=$TIME_LONG\n" >> $DBASE_FILE
+    echo -e "WORK_NUM=$WORK_NUM\nSHORT_NUM=$SHORT_NUM\nLONG_NUM=$LONG_NUM\nWORK_NUM_UNINT=$WORK_NUM_UNINT\n" > $DBASE_FILE
+    echo -e "WORK_INTERVAL=$WORK_INTERVAL\nSHORT_INTERVAL=$SHORT_INTERVAL\nLONG_INTERVAL=$LONG_INTERVAL\n" >> $DBASE_FILE
 }
 
 function load {
@@ -35,28 +35,28 @@ ANSWER=""
 
 while [[ $ANSWER != "q" ]]; do
     echo "--------------------"
-    printf "%-1s - %-12s {%2d} [%2d, %2d] (%3d)\n" "w" "work"  $TIME_WORK $UNINT_WORK $WORK $(($TIME_WORK*$WORK))
-    printf "%-1s - %-12s {%2d}     [%2d] (%3d)\n" "s" "short break" $TIME_SHORT $SHORT $(($TIME_SHORT*$SHORT))
-    printf "%-1s - %-12s {%2d}     [%2d] (%3d)\n" "l" "long break" $TIME_LONG $LONG $(($TIME_LONG*$LONG))
+    printf "%-1s - %-12s {%2d} [%2d, %2d] (%3d)\n" "w" "work"  $WORK_INTERVAL $WORK_NUM_UNINT $WORK_NUM $(($WORK_INTERVAL*$WORK_NUM))
+    printf "%-1s - %-12s {%2d}     [%2d] (%3d)\n" "s" "short break" $SHORT_INTERVAL $SHORT_NUM $(($SHORT_INTERVAL*$SHORT_NUM))
+    printf "%-1s - %-12s {%2d}     [%2d] (%3d)\n" "l" "long break" $LONG_INTERVAL $LONG_NUM $(($LONG_INTERVAL*$LONG_NUM))
     echo "q - quit"
     read -p "? " ANSWER INTERVAL
     case $ANSWER in
-	w) timer ${INTERVAL:-$TIME_WORK}
-	   WORK=$(( $WORK+1 ))
-	   UNINT_WORK=$(( $UNINT_WORK+1 ))
+	w) timer ${INTERVAL:-$WORK_INTERVAL}
+	   WORK_NUM=$(( $WORK_NUM+1 ))
+	   WORK_NUM_UNINT=$(( $WORK_NUM_UNINT+1 ))
 	   save ;;
-	W) TIME_WORK=$INTERVAL
+	W) WORK_INTERVAL=$INTERVAL
 	   save ;;
-	s) timer ${INTERVAL:-$TIME_SHORT} 0 "Time to work! (x)"
-	   SHORT=$(( $SHORT+1 ))
+	s) timer ${INTERVAL:-$SHORT_INTERVAL} 0 "Time to work! (x)"
+	   SHORT_NUM=$(( $SHORT_NUM+1 ))
 	   save ;;
-	S) TIME_SHORT=$INTERVAL
+	S) SHORT_INTERVAL=$INTERVAL
 	   save ;;
-	l) timer ${INTERVAL:-$TIME_LONG} 5 "Time to work! (x)"
-	   LONG=$(( $LONG+1 ))
-	   UNINT_WORK=0
+	l) timer ${INTERVAL:-$LONG_INTERVAL} 5 "Time to work! (x)"
+	   LONG_NUM=$(( $LONG_NUM+1 ))
+	   WORK_NUM_UNINT=0
 	   save ;;
-	L) TIME_LONG=$INTERVAL
+	L) LONG_INTERVAL=$INTERVAL
 	   save ;;
 	q) save ;;
     esac
