@@ -31,8 +31,8 @@ load `date +%F`.pom
 echo "Pomodoro timer!"
 echo "==============="
 
-
 ANSWER=""
+
 while [[ $ANSWER != "q" ]]; do
     echo "--------------------"
     echo "w - work ($TIME_WORK) [$UNINT_WORK; $WORK]"
@@ -41,17 +41,17 @@ while [[ $ANSWER != "q" ]]; do
     echo "q - quit"
     read -p "? " ANSWER INTERVAL
     case $ANSWER in
-	w*) timer ${INTERVAL:-$TIME_WORK}
-	    $(( WORK+=1 ))
-	    $(( UNINT_WORK+=1 ))
-	    save ;;
-	s*) timer ${INTERVAL:-$TIME_SHORT} 0 "Time to work! (x)"
-	    $(( SHORT+=1 ))
-	    save ;;
-	l*) timer ${INTERVAL:-$TIME_LONG} 5 "Time to work! (x)"
-	    $(( LONG+=1 ))
-	    UNINT_WORK=0
-	    save ;;
-	q*) save ;;
+	w) timer ${INTERVAL:-$TIME_WORK}
+	   WORK=$(( $WORK+1 ))
+	   UNINT_WORK=$(( $UNINT_WORK+1 ))
+	   save ;;
+	s) timer ${INTERVAL:-$TIME_SHORT} 0 "Time to work! (x)"
+	   SHORT=$(( $SHORT+1 ))
+	   save ;;
+	l) timer ${INTERVAL:-$TIME_LONG} 5 "Time to work! (x)"
+	   LONG=$(( $LONG+1 ))
+	   UNINT_WORK=0
+	   save ;;
+	q) save ;;
     esac
 done
