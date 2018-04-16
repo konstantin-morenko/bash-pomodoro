@@ -10,19 +10,16 @@ function save {
     echo -e "WORK=$WORK\nSHORT=$SHORT\nLONG=$LONG\n" > $DBASE_FILE
 }
 
-# ====================
 function load {
     DBASE_FILE=$1
     if [ -a $DBASE_FILE ]; then
 	source $DBASE_FILE
     else
-	touch $DBASE_FILE
 	save
     fi
     return
 }
-# ====================
-#source $DBASE_FILE
+
 load `date +%F`.pom
 
 echo "Pomodoro timer!"
