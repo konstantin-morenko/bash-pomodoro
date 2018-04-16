@@ -35,9 +35,9 @@ ANSWER=""
 
 while [[ $ANSWER != "q" ]]; do
     echo "--------------------"
-    echo "w - work ($TIME_WORK) [$UNINT_WORK; $WORK]"
-    echo "s - short break ($TIME_SHORT) [$SHORT]"
-    echo "l - long break ($TIME_LONG) [$LONG]"
+    echo "w - work {$TIME_WORK} [$UNINT_WORK; $WORK] ($(($TIME_WORK*$WORK)))"
+    echo "s - short break {$TIME_SHORT} [$SHORT] ($(($TIME_SHORT*$SHORT)))"
+    echo "l - long break {$TIME_LONG} [$LONG] ($(($TIME_LONG*$LONG)))"
     echo "q - quit"
     read -p "? " ANSWER INTERVAL
     case $ANSWER in
