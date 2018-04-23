@@ -40,9 +40,9 @@ ANSWER=""
 
 while [[ $ANSWER != "q" ]]; do
     echo "--------------------"
-    printf "%-1s - %-12s {%2d} [%2d, %2d] (%3d)\n" "w" "work"  $WORK_INTERVAL $WORK_NUM_UNINT $WORK_NUM $WORK_TIME
-    printf "%-1s - %-12s {%2d}     [%2d] (%3d)\n" "s" "short break" $SHORT_INTERVAL $SHORT_NUM $SHORT_TIME
-    printf "%-1s - %-12s {%2d}     [%2d] (%3d)\n" "l" "long break" $LONG_INTERVAL $LONG_NUM $LONG_TIME
+    printf "%-1s - %-12s {%2d} [%2d, %2d] (%3d=%2d:%02d)\n" "w" "work"  $WORK_INTERVAL $WORK_NUM_UNINT $WORK_NUM $WORK_TIME $(($WORK_TIME/60)) $(($WORK_TIME%60))
+    printf "%-1s - %-12s {%2d}     [%2d] (%3d=%2d:%02d)\n" "s" "short break" $SHORT_INTERVAL $SHORT_NUM $SHORT_TIME $(($SHORT_TIME/60)) $(($SHORT_TIME%60))
+    printf "%-1s - %-12s {%2d}     [%2d] (%3d=%2d:%02d)\n" "l" "long break" $LONG_INTERVAL $LONG_NUM $LONG_TIME $(($LONG_TIME/60)) $(($LONG_TIME%60))
     echo "q - quit"
     read -p "? " ANSWER INTERVAL
     case $ANSWER in
