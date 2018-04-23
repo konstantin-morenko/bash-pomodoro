@@ -4,7 +4,7 @@ function notify {
     NOTIFIER="notify-send"
     case $EXPIRE in
 	pin)
-	    $NOTIFIER "$MESSAGE" --expire-time=0 ;;
+	    $NOTIFIER "$MESSAGE (x)" --expire-time=0 ;;
 	*)
 	    $NOTIFIER "$MESSAGE" ;;
     esac
@@ -32,7 +32,7 @@ function output_left {
 function timer {
     INTERVAL=$1
     NOTIF_INTERVAL=${2:-5}
-    FINAL_MESSAGE=${3:-"Take a break! (x)"}
+    FINAL_MESSAGE=${3:-"Take a break!"}
     notify "Started!"
     for LEFT in $(seq $INTERVAL -1 1); do
 	output_left $LEFT $NOTIF_INTERVAL
