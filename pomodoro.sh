@@ -31,6 +31,11 @@ function load {
     return
 }
 
+function message_string {
+    # 1 interval; 2 message
+    echo "(`date +%H:%M`) [$1 mins] $2"
+}
+
 load `date +%F`.pom
 
 echo "Pomodoro timer!"
@@ -46,20 +51,20 @@ while [[ $ANSWER != "q" ]]; do
     echo "q - quit"
     read -p "? " ANSWER INTERVAL
     case $ANSWER in
-	[w]) timer ${INTERVAL:=$WORK_INTERVAL} 5 "[$INTERVAL mins] Time to break!"
+	[w]) timer ${INTERVAL:=$WORK_INTERVAL} 5 "$(message_string $INTERVAL 'Time to break!')"
 	   WORK_NUM=$(( $WORK_NUM+1 ))
 	   WORK_NUM_UNINT=$(( $WORK_NUM_UNINT+1 ))
 	   WORK_TIME=$(( $WORK_TIME+$INTERVAL ))
 	   save ;;
 	W) WORK_INTERVAL=$INTERVAL
 	   save ;;
-	[s]) timer ${INTERVAL:=$SHORT_INTERVAL} 0 "[$INTERVAL mins] Time to work!"
+	[s]) timer ${INTERVAL:=$SHORT_INTERVAL} 0 "$(message_string $INTERVAL 'Time to work!')"
 	   SHORT_NUM=$(( $SHORT_NUM+1 ))
 	   SHORT_TIME=$(( $SHORT_TIME+$INTERVAL ))
 	   save ;;
 	S) SHORT_INTERVAL=$INTERVAL
 	   save ;;
-	[l]) timer ${INTERVAL:=$LONG_INTERVAL} 5 "[$INTERVAL mins] Time to work!"
+	[l]) timer ${INTERVAL:=$LONG_INTERVAL} 5 "$(message_string $INTERVAL 'Time to work!')"
 	   LONG_NUM=$(( $LONG_NUM+1 ))
 	   WORK_NUM_UNINT=0
 	   LONG_TIME=$(( $LONG_TIME+$INTERVAL ))
