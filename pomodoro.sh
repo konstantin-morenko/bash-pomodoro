@@ -33,7 +33,7 @@ function load {
 
 function message_string {
     # 1 interval; 2 message
-    echo "(`date +%H:%M`) [$1 mins] $2"
+    echo "[$1 mins] $2"
 }
 
 load `date +%F`.pom

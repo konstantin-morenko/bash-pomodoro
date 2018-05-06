@@ -4,7 +4,7 @@ function notify {
     NOTIFIER="notify-send"
     case $EXPIRE in
 	pin)
-	    $NOTIFIER "$MESSAGE (x)" --expire-time=0 ;;
+	    $NOTIFIER "(`date +%H:%M`) $MESSAGE (x)" --expire-time=0 ;;
 	*)
 	    $NOTIFIER "$MESSAGE" ;;
     esac
