@@ -38,6 +38,7 @@ load `date +%F`.pom
 
 echo "Pomodoro timer!"
 echo "==============="
+echo "Use capital letter for setting interval (ex. W 15)"
 
 ANSWER=""
 
