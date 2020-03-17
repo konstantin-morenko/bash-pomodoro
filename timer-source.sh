@@ -38,7 +38,7 @@ function timer {
 	output_left $LEFT $NOTIF_INTERVAL
 	sleep 60
     done
-    message "Total $INTERVAL minutes"
+    message "(`date +%H:%M`) Total $INTERVAL minutes"
     echo ""
     notify "$FINAL_MESSAGE" pin
     return
